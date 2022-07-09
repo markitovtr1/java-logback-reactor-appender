@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<configuration debug="true">
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="set" class="br.com.crazycrowd.logback.reactor.SetAppender"/>
+
+    <appender name="flux" class="br.com.crazycrowd.logback.reactor.FluxAppender">
+        <appender-ref ref="set"/>
+    </appender>
+
+    <logger name="test-logger" level="TRACE" additivity="false">
+        <appender-ref ref="flux"/>
+    </logger>
+
+    <root level="DEBUG">
+        <appender-ref ref="console"/>
+    </root>
+</configuration>
